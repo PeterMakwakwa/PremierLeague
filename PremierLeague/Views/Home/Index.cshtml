@@ -1,0 +1,69 @@
+﻿@*@model IEnumerable<PremierLeague.Models.Dto>
+
+    @{
+        ViewData["Title"] = "Index1";
+    }*@
+@using System.Data;
+@model DataTable
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">
+        <input type="file" name="postedFile" />
+        <input type="submit" value="Import" />
+    </form>
+    @if (Model != null)
+    {
+        <hr />
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                @foreach (DataColumn dc in Model.Columns)
+                {
+                    <th>@dc.ColumnName</th>
+                }
+            </tr>
+            @foreach (DataRow dr in Model.Rows)
+            {
+                <tr>
+                    @foreach (DataColumn dc in Model.Columns)
+                    {
+                        <td>@dr[dc.ColumnName]</td>
+                    }
+                </tr>
+            }
+        </table>
+    }
+</body>
+</html>
+
+
+
+
+
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <form asp-controller="Home" asp-action="Index" method="post" enctype="multipart/form-data">
+            <input type="file" name="postedFile" />
+            <input type="submit" value="Import" />
+
+
+        </form>
+    </div>
+
+
+    <h1>Index1</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
